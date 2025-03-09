@@ -22,8 +22,10 @@ sudo snap install microk8s --classic --channel="$CHANNEL"
 
 # Add current user to the microk8s group
 echo "Adding current user to the microk8s group..."
-SUDO_USER=$(whoami)
-sudo usermod -aG microk8s $SUDO_USER
+sudo usermod -a -G microk8s $USER
+mkdir -p ~/.kube
+chmod 0700 ~/.kube
+su - $USER
 
 # Update the local system's PATH variable to include MicroK8s binaries
 echo "Updating the local system's PATH variable..."
@@ -75,6 +77,6 @@ fi
 source "$SHELL_PROFILE"
 
 echo "Alias is now permanent and active."
-
+alias kubectl='microk8s kubectl'
 
 echo "FINISHED"
