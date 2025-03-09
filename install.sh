@@ -30,7 +30,7 @@ su - $USER
 # Update the local system's PATH variable to include MicroK8s binaries
 echo "Updating the local system's PATH variable..."
 echo 'export PATH=$PATH:$HOME/.snap/bin' >> ~/.bashrc
-source ~/.bashrc
+. ~/.bashrc
 
 # Verify installation by checking the version of kubectl installed by MicroK8s
 echo "Verifying installation and checking the version of kubectl installed by MicroK8s..."
@@ -74,7 +74,7 @@ else
 fi
 
 # Apply the changes immediately
-source "$SHELL_PROFILE"
+. "$SHELL_PROFILE"
 
 echo "Alias is now permanent and active."
 alias kubectl='microk8s kubectl'
