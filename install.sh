@@ -40,13 +40,13 @@ microk8s kubectl version --short
 # Enable plugins
 echo "Installing MicroK8s Plugins"
 echo "- DNS"
-microk8s enable dns
+sudo microk8s enable dns
 echo "- Dashboard"
-microk8s enable dashboard
+sudo microk8s enable dashboard
 echo "- Helm"
-microk8s enable helm
+sudo microk8s enable helm
 echo "- Storage"
-microk8s enable hostpath-storage
+sudo microk8s enable hostpath-storage
 
 #Alias
 echo "Creating Alias for KUBECTL"
