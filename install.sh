@@ -34,7 +34,6 @@ source ~/.bashrc
 echo "Verifying installation and checking the version of kubectl installed by MicroK8s..."
 microk8s kubectl version --short
 
-alias kubectl='microk8s kubectl'
 
 # Enable plugins
 echo "Installing MicroK8s Plugins"
@@ -46,5 +45,36 @@ echo "- Helm"
 microk8s enable helm
 echo "- Storage"
 microk8s enable hostpath-storage
+
+#Alias
+echo "Creating Alias for KUBECTL"
+
+# Define the alias
+ALIAS_CMD="alias kubectl='microk8s kubectl'"
+
+# Determine the shell profile file
+SHELL_PROFILE=""
+
+if [[ $SHELL == *"zsh" ]]; then
+    SHELL_PROFILE="$HOME/.zshrc"
+elif [[ $SHELL == *"bash" ]]; then
+    SHELL_PROFILE="$HOME/.bashrc"
+else
+    SHELL_PROFILE="$HOME/.profile"
+fi
+
+# Add the alias to the shell profile if it's not already present
+if ! grep -qxF "$ALIAS_CMD" "$SHELL_PROFILE"; then
+    echo "$ALIAS_CMD" >> "$SHELL_PROFILE"
+    echo "Alias added to $SHELL_PROFILE"
+else
+    echo "Alias already exists in $SHELL_PROFILE"
+fi
+
+# Apply the changes immediately
+source "$SHELL_PROFILE"
+
+echo "Alias is now permanent and active."
+
 
 echo "FINISHED"
