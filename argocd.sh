@@ -5,7 +5,6 @@ set -e  # Exit on error
 echo "🚀 Installing ArgoCD on MicroK8s..."
 
 # Enable required MicroK8s addons
-sudop microk8s enable dns
 sudo microk8s enable dns
 sudo microk8s enable storage
 
