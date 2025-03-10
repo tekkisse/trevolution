@@ -51,30 +51,26 @@ sudo microk8s enable hostpath-storage
 #Alias
 echo "Creating Alias for KUBECTL"
 
-# Define the alias
-ALIAS_CMD="alias kubectl='microk8s kubectl'"
-
-# Determine the shell profile file
-SHELL_PROFILE=""
-
-if [[ $SHELL == *"zsh" ]]; then
-    SHELL_PROFILE="$HOME/.zshrc"
-elif [[ $SHELL == *"bash" ]]; then
-    SHELL_PROFILE="$HOME/.bashrc"
-else
-    SHELL_PROFILE="$HOME/.profile"
+# Detect the user's default shell
+SHELL_CONFIG="~/.bashrc"
+if [[ "$SHELL" == "/bin/zsh" ]]; then
+    SHELL_CONFIG="~/.zshrc"
+elif [[ "$SHELL" == "/bin/fish" ]]; then
+    SHELL_CONFIG="~/.config/fish/config.fish"
 fi
 
-# Add the alias to the shell profile if it's not already present
-if ! grep -qxF "$ALIAS_CMD" "$SHELL_PROFILE"; then
-    echo "$ALIAS_CMD" >> "$SHELL_PROFILE"
-    echo "Alias added to $SHELL_PROFILE"
+# Add the alias if it doesn't already exist
+if ! grep -q "alias kubectl='microk8s kubectl'" $SHELL_CONFIG; then
+    echo "alias kubectl='microk8s kubectl'" >> $SHELL_CONFIG
+    echo "Alias added to $SHELL_CONFIG"
 else
-    echo "Alias already exists in $SHELL_PROFILE"
+    echo "Alias already exists in $SHELL_CONFIG"
 fi
 
-# Apply the changes immediately
-. "$SHELL_PROFILE"
+# Apply changes
+source $SHELL_CONFIG
+
+echo "Alias setup complete. Restart your terminal or run 'source $SHELL_CONFIG' to apply."
 
 echo "Alias is now permanent and active."
 alias kubectl='microk8s kubectl'
