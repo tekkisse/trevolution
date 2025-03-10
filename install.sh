@@ -84,4 +84,8 @@ echo "Alias setup complete. Restart your terminal or run 'source $SHELL_CONFIG' 
 echo "Alias is now permanent and active."
 alias kubectl='microk8s kubectl'
 
+echo "Set Kubeconfig"
+sudo microk8s config > ~/.kube/config
+
+
 echo "FINISHED"
