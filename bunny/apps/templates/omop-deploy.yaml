@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omop-lite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: omop-lite
+  template:
+    metadata:
+      labels:
+        app: omop-lite
+    spec:
+      containers:
+        - name: omop-lite
+          image: ghcr.io/health-informatics-uon/omop-lite
+          env:
+            - name: DB_PASSWORD
+              value: postgres
+            - name: DB_NAME
+              value: omop
+            - name: SYNTHETIC
+              value: "true"

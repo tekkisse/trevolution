@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bunny
+  namespace: bunny
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bunny
+  template:
+    metadata:
+      labels:
+        app: bunny
+    spec:
+      containers:
+        - name: bunny
+          image: ghcr.io/health-informatics-uon/hutch/bunny:edge
+          env:
+            - name: DATASOURCE_DB_USERNAME
+              value: postgres
+            - name: DATASOURCE_DB_PASSWORD
+              value: postgres
+            - name: DATASOURCE_DB_DATABASE
+              value: omop
+            - name: DATASOURCE_DB_DRIVERNAME
+              value: postgresql
+            - name: DATASOURCE_DB_SCHEMA
+              value: omop
+            - name: DATASOURCE_DB_PORT
+              value: "5432"
+            - name: DATASOURCE_DB_HOST
+              value: db
+            - name: BUNNY_LOGGER_LEVEL
+              value: DEBUG
+      initContainers:
+        - name: wait-for-omop-lite
+          image: busybox
+          command: ['sh', '-c', "until nc -z omop-lite 80; do echo waiting for omop-lite; sleep 2; done"]
