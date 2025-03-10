@@ -18,7 +18,7 @@ spec:
     - CreateNamespace=true # Namespace Auto-Creation ensures that namespace specified as the application destination exists in the destination cluster.
     - PruneLast=true # Allow the ability for resource pruning to happen as a final, implicit wave of a sync operation
   source:
-    repoURL: "git@github.com:tekkisse/trevolution.git"
+    repoURL: "https://github.com/tekkisse/trevolution.git"
     targetRevision: HEAD
     path: '.'
     directory: 
