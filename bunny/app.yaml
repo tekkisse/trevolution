@@ -4,7 +4,7 @@ metadata:
   name: bunny
   namespace: argocd
 spec:
-  project: bunny
+  project: default
   destination:
     server: https://kubernetes.default.svc
     namespace: bunny
