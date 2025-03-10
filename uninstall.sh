@@ -1,0 +1,1 @@
+sudo snap remove microk8s 
