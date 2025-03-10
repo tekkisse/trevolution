@@ -1,27 +1,27 @@
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: bunny
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-  labels:
-    argocd.argoproj.io/rootproject: "true"
-spec:
-  # Project description
-  description: N8N deployment
+# apiVersion: argoproj.io/v1alpha1
+# kind: AppProject
+# metadata:
+#   name: bunny
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+#   labels:
+#     argocd.argoproj.io/rootproject: "true"
+# spec:
+#   # Project description
+#   description: Bunny deployment
 
-  # Allow manifests to deploy from only this Git repo or the app repo
-  sourceRepos:
-  - '*'
+#   # Allow manifests to deploy from only this Git repo or the app repo
+#   sourceRepos:
+#   - '*'
 
-  sourceNamespaces:
-  - '*'
+#   sourceNamespaces:
+#   - '*'
 
-  destinations:
-  - namespace: '*'
-    server: https://kubernetes.default.svc
+#   destinations:
+#   - namespace: '*'
+#     server: https://kubernetes.default.svc
   
-  clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
+#   clusterResourceWhitelist:
+#   - group: '*'
+#     kind: '*'
