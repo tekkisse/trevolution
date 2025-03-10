@@ -15,6 +15,6 @@ spec:
     - CreateNamespace=true 
     - PruneLast=false
   source:
-    repoURL: git@github.com/SwanseaUniversityMedical/k8s-dev-deploy
+    repoURL: https://github.com/tekkisse/trevolution.git
     targetRevision: HEAD
     path: bunny/apps
