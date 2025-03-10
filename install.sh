@@ -24,8 +24,8 @@ sudo snap install microk8s --classic --channel="$CHANNEL"
 echo "Adding current user to the microk8s group..."
 sudo usermod -a -G microk8s $USER
 mkdir -p ~/.kube
-chmod 0700 ~/.kube
-su - $USER
+sudo chmod -f -R $USER ~/.kube
+
 
 # Update the local system's PATH variable to include MicroK8s binaries
 echo "Updating the local system's PATH variable..."
