@@ -9,7 +9,7 @@ spec:
   project: bunny
   source:
     chart: bunny
-    repoURL: https://github.com/Health-Informatics-UoN/hutch/tree/main/charts/hutch
+    repoURL: https://github.com/Health-Informatics-UoN/hutch/tree/main/charts/hutch/Chart.yaml
     targetRevision: 0.1.0
     helm:
       values: |
