@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: Bunny
+  name: bunny
   namespace: hiru-mgmt-argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: Bunny
+  project: bunny
   source:
     chart: bunny
     repoURL: github.com/Health-Informatics-UoN/hutch/tree/main/charts/hutch
