@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: Bunny
+  namespace: hiru-mgmt-argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: Bunny
+  source:
+    chart: bunny
+    repoURL: github.com/Health-Informatics-UoN/hutch/tree/main/charts/hutch
+    targetRevision: 0.1.0
+    helm:
+      values: |
+        ingress:
+          enabled: true
+          className: "nginx-hiru"
+          hosts:
+            - host: n8n.dk.serp.ac.uk
+              paths:
+                - /
+          tls:
+            - hosts:
+                - n8n.dk.serp.ac.uk
+              secretName: hiru-n8n-cert              
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: n8n
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions: 
+    - CreateNamespace=true 
