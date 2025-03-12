@@ -8,7 +8,7 @@ metadata:
 spec:
   project: bunny
   source:
-    chart: hutch
+    chart: charts/hutch
     repoURL: https://github.com/Health-Informatics-UoN/hutch.git
     targetRevision: 0.1.0
     helm:
