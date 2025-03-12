@@ -8,9 +8,9 @@ metadata:
 spec:
   project: bunny
   source:
-    chart: charts/hutch/Chart.yaml
+    path: charts/hutch
     repoURL: https://github.com/Health-Informatics-UoN/hutch.git
-    targetRevision: 0.1.0
+    targetRevision: HEAD
     helm:
       values: |
         ingress:
