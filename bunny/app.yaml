@@ -13,6 +13,29 @@ spec:
     targetRevision: HEAD
     helm:
       values: |
+        relay:
+          enabled: true
+
+          upstreamTaskApi:
+            basicAuth:
+              username: "CHANGEME"
+              password: "CHANGEME"
+            baseUrl: "https://CHANGEME"
+            collectionId: "RQ-CC-CHANGEME"
+
+        rabbitmq:
+          # Enables the rabbitmq templates
+          enabled: true
+          auth:
+            username: "CHANGEME"
+            password: "CHANGEME"
+
+        postgresql:
+          enabled: true
+          auth:
+            username: "CHANGEME"
+            password: "CHANGEME"
+        
         bunny:
           enabled: true
           extraEnvVars:
