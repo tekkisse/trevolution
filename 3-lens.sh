@@ -6,5 +6,5 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lens-archive-keyring.gpg] ht
 
 sudo apt update && sudo apt install lens
 
-lens-desktop
+lens-desktop &
 
