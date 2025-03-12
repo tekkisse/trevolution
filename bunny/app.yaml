@@ -13,17 +13,21 @@ spec:
     targetRevision: HEAD
     helm:
       values: |
-        ingress:
+        bunny:
           enabled: true
-          className: "nginx-hiru"
-          hosts:
-            - host: n8n.dk.serp.ac.uk
-              paths:
-                - /
-          tls:
-            - hosts:
-                - n8n.dk.serp.ac.uk
-              secretName: hiru-n8n-cert              
+          extraEnvVars:
+            # COLLECTION_ID is created in the Relay instance when creating a user.
+            - name: COLLECTION_ID
+              value: 0194cbaa-5b5f-7d86-815b-aad2ee2224fc
+          taskApi:
+            basicAuth:
+              # Username is created in the Relay instance when creating a user.
+              username: test-user-1
+              # Password is created in the Relay instance when creating a user.
+              password: "BdRoQP2z#sXsM79*"
+          db:
+            # Change to whatever the schema is in the postgresql database.
+            schema: omop            
   destination:
     server: https://kubernetes.default.svc
     namespace: n8n
