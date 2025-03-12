@@ -51,9 +51,10 @@ spec:
           db:
             # Change to whatever the schema is in the postgresql database.
             schema: omop            
+
   destination:
     server: https://kubernetes.default.svc
-    namespace: n8n
+    namespace: bunny
   syncPolicy:
     automated:
       prune: true
